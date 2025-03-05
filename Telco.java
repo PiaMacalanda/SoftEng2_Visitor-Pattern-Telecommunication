@@ -1,30 +1,39 @@
-public class Telco implements TelcoSubscription {
-    private final String telcoName;
-    private final double promoPrice;
-    private final boolean unliCallText;
+public class Telco implements TeleSubscription {
+    private String telcoName;
+    private double promoPrice;
+    private double dataAllowance;
+    private boolean unliCallText;
 
-    public Telco(String telcoName, double promoPrice, boolean unliCallText) {
+    public Telco(String telcoName, double promoPrice, double dataAllowance, boolean unliCallText) {
         this.telcoName = telcoName;
         this.promoPrice = promoPrice;
+        this.dataAllowance = dataAllowance;
         this.unliCallText = unliCallText;
     }
 
-    @Override
-    public String accept(UsagePromo promo, double price) {
-        return promoShowAllowance(telcoName, price);
+    public String getTelcoName() {
+        return telcoName;
+    }
+
+    public double getPromoPrice() {
+        return promoPrice;
+    }
+
+    public double getDataAllowance() {
+        return dataAllowance;
+    }
+
+    public boolean isUnliCallText() {
+        return unliCallText;
     }
 
     @Override
-    public String accept(UnliCallsTextOffer unliPackage, boolean unliCallText) {
-        return promoShowUnliCalls(telcoName, unliCallText);
+    public void accept(UsagePromo usagePromo) {
+        usagePromo.showAllowance(telcoName, promoPrice);
     }
 
-    private String promoShowAllowance(String telcoName, double promoPrice) {
-        return "Telco: " + telcoName + " | Price: " + promoPrice;
-    }
-
-
-    private String promoShowUnliCalls(String telcoName, boolean unliCallText) {
-        return "Telco: " + telcoName + " | Unlimited Calls & Text: " + (unliCallText ? "Yes" : "No");
+    @Override
+    public void accept(UnliCallTextOffer unliCallTextOffer) {
+        unliCallTextOffer.showUnliCallsTextOffer(telcoName, unliCallText);
     }
 }

@@ -1,4 +1,4 @@
 public interface UsagePromo {
-
-    String showAllowance(String telcoName, double money);
+    
+    String showAllowance(String telcoName, double price);
 }

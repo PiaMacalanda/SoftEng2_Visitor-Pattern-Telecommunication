@@ -1,8 +1,10 @@
-class UnliCallTextPackage implements UnliCallsTextOffer {
+public class UnliCallTextPackage implements UnliCallTextOffer {
     
     @Override
-    public String showUnliCallsTextOffer(String telcoName, boolean hashunliCallText) {
-        if (hashunliCallText) return telcoName + " includes unlimited calls and texts packages.";
-        return telcoName + " does not offer unlimited calls and texts packages.";
+    public String showUnliCallsTextOffer(String telcoName, boolean unliCallText) {
+        String result = telcoName + " unlimited calls and text package: " + 
+               (unliCallText ? "Unlimited" : "Per-use");
+        System.out.println(result);
+        return result;
     }
 }
